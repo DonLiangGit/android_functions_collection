@@ -1,4 +1,4 @@
-android_functions_collection
+Android Functions
 ============================
 Directory
 ================
