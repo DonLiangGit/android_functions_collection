@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string-array name="Appetize_features">
+        <item>Splash Screen</item>
+        <item>Sliding Menu</item>
+        <item>Swipe tab</item>
+        <item>Grid View</item>
+        <item>List View</item>
+        <item>Custom View</item>
+        <item>Action Bar</item>
+        <item>Button</item>
+    </string-array> 
+</resources>
