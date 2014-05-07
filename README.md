@@ -12,8 +12,8 @@ Directory
     1.  for basic list view:
     copy all four files in the `basic` folder seperately to your project or
     2. `create a class extends ListActivity(import related class)`
-      2. `create an XML file for string resources`
-      3. `create an XML file for display each item (type: TextView)`
-  	  4. `create ArrayAdapter to get the string[]`
+    3. `create an XML file for string resources`
+    4. `create an XML file for display each item (type: TextView)`
+    5. `create ArrayAdapter to get the string[]`
 
 
