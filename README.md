@@ -10,7 +10,7 @@ Directory
     2. Pick the activity java class then modify `setContentView(R.layout.your_layout_name)`.
   2. To apply `List View` follows:
     1.  for basic list view:
-    copy all four files in the `basic` folder seperately to your project or
+    copy all four files in the `basic` folder seperately to your android project or
     2. `create a class extends ListActivity(import related class)`
     3. `create an XML file for string resources`
     4. `create an XML file for display each item (type: TextView)`
