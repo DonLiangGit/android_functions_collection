@@ -15,5 +15,8 @@ Directory
     3. `create an XML file for string resources`
     4. `create an XML file for display each item (type: TextView)`
     5. `create ArrayAdapter to get the string[]`
+* icon:
+  1. copy icons image seperately to `drawable` folder under `res`;
+  2. change `android:icon="@drawable/your_icon_name` in `AndroidManifest.xml`;
 
 
