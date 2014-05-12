@@ -22,5 +22,6 @@ Directory
   1. for basic splash screnn:
   copy all three files into different folders in your project or
   2. create a handler and also use its `.postDelayed()` method to handle a new runnable.
+  3. full screen: add `android:theme="@android:style/Theme.NoTitleBar.Fullscreen"` to `AndroidManifest.xml`.
 
 
