@@ -25,6 +25,12 @@ public class ListViewLoader extends ListActivity {
 		
 		String[] features = getResources().getStringArray(R.array.Appetize_features);
 		ArrayAdapter listadapter = new ArrayAdapter<String>(this, R.layout.list_item, features);
+		//public ArrayAdapter (Context context, int resource, List<T> objects)
+		//Parameters
+		// context	The current context.
+		// resource	The resource ID for a layout file containing a TextView to use when instantiating views.
+		// objects	The objects to represent in the ListView.
+		// reference: http://developer.android.com/reference/android/widget/ArrayAdapter.html
 		
 		setListAdapter(listadapter);
 	}
