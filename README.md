@@ -4,7 +4,7 @@ Directory
 =
 * Layout: 
   includes
-  `Relative Layout` `Table Layout` `Linear Layout` `List View`
+  `Relative Layout` `Table Layout` `Linear Layout` `List View` `Swipe Views`
   1. To apply a layout, follows:
     1. copy the layout.xml to `res/layout` folder in your project.
     2. Pick the activity java class then modify `setContentView(R.layout.your_layout_name)`.
@@ -15,6 +15,7 @@ Directory
     3. `create an XML file for string resources`
     4. `create an XML file for display each item (type: TextView)`
     5. `create ArrayAdapter to get the string[]`
+  3. To apply Swipe Views, import all the files in that folder.
 * Icon:
   1. copy icons image seperately to `drawable` folder under `res`;
   2. change `android:icon="@drawable/your_icon_name` in `AndroidManifest.xml`;
