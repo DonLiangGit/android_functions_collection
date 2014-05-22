@@ -1,8 +1,13 @@
 package com.example.locakstoragetest;
 
+
+
+import com.example.locakstoragetest.utils.UIHelper;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,14 +20,20 @@ import android.os.Build;
 public class MainActivity extends Activity {
 
 	public static final String LOGTAG="EXPLORECA";
+	public static final String USERNAME="username"; // username is to refer the value
+	
+	private SharedPreferences settings;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		settings = getPreferences(MODE_PRIVATE);
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+					.add(R.id.container, new PlaceholderFragment()).commit();		
 		}
 	}
 
@@ -48,6 +59,14 @@ public class MainActivity extends Activity {
 
 	public void setPreference(View v){
 		Log.i(LOGTAG, "Clicked set");
+		
+		// To set a preference, needs the SharedPreferences editor object 
+		// which is a class that's a field of SharedPreference.
+		SharedPreferences.Editor editor = settings.edit(); // return an editor object.
+		String prefValue = UIHelper.getText(this, R.id.editText1);
+		editor.putString(USERNAME, prefValue);
+		editor.commit();
+		UIHelper.displayText(this, R.id.textView1, "Preference Saved");
 	}
 	public void showPreference(View v){
 		Log.i(LOGTAG, "Clicked show");
