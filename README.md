@@ -20,7 +20,7 @@ Directory
   1. copy icons image seperately to `drawable` folder under `res`;
   2. change `android:icon="@drawable/your_icon_name` in `AndroidManifest.xml`;
 * Splash screen:
-  1. for basic splash screnn:
+  1. for basic splash screen:
   copy all three files into different folders in your project or
   2. create a handler and also use its `.postDelayed()` method to handle a new runnable.
   3. full screen: add `android:theme="@android:style/Theme.NoTitleBar.Fullscreen"` to `AndroidManifest.xml`.
