@@ -24,5 +24,6 @@ Directory
   copy all three files into different folders in your project or
   2. create a handler and also use its `.postDelayed()` method to handle a new runnable.
   3. full screen: add `android:theme="@android:style/Theme.NoTitleBar.Fullscreen"` to `AndroidManifest.xml`.
-
-
+* Debug:
+  1. Using logcat to debug:
+  2. create `log` class then using its d method to pass the tag and message.
