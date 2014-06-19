@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -26,7 +27,10 @@ public class MainActivity extends Activity {
 //        ArrayList<String> values = new ArrayList<String>();
 //        String value = values.get(0);
         
-        Log.d("MainActivity", "Activity Created");
+//        Log.d("MainActivity", "Activity Created");
+        
+        Toast msg = Toast.makeText(this, "Activity created", Toast.LENGTH_LONG);
+        msg.show();
         
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
@@ -51,6 +55,7 @@ public class MainActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Toast.makeText(this, "Toast Testing", Toast.LENGTH_LONG).show();
         if (id == R.id.action_settings) {
             return true;
         }
