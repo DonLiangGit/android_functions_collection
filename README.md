@@ -27,3 +27,4 @@ Directory
 * Debug:
   1. Using logcat to debug:
   2. create `log` class then using its d method to pass the tag and message.
+  3. Using `toast` to test: `Toast.makeText(context, message, duration).show();`, for the context arguement I would like to use this for current class.
