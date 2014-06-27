@@ -10,8 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -22,6 +25,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.fragment_main);
         
         popListView();
+        clickCallback();
 		
         // The Code below makes the app crash!
         // Answer: *IMPORTANT!*
@@ -32,10 +36,10 @@ public class MainActivity extends ActionBarActivity {
         } */ 
     }
 
-
-    private void popListView() {
+	private void popListView() {
     	// Create list of items
 		String[] myItems = getResources().getStringArray(R.array.Test);
+		
 		Log.d("popListView", "Items");
 		// Build Adapter
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -52,6 +56,21 @@ public class MainActivity extends ActionBarActivity {
 		
 	}
 
+    private void clickCallback() {
+		// TODO Auto-generated method stub
+    	ListView list = (ListView) findViewById(R.id.listView1);
+    	list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View viewClicked, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				TextView textView = (TextView)viewClicked;
+				String message = textView.getText().toString();
+				Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();				
+			}
+    	});  	
+	}
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {

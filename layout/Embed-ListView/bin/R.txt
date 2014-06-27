@@ -339,6 +339,7 @@ int string app_name 0x7f0a000d
 int string hello_world 0x7f0a000e
 int style AppBaseTheme 0x7f0b0083
 int style AppTheme 0x7f0b0084
+int style MyActionBar 0x7f0b0085
 int style TextAppearance_AppCompat_Base_CompactMenu_Dialog 0x7f0b0063
 int style TextAppearance_AppCompat_Base_SearchResult 0x7f0b006d
 int style TextAppearance_AppCompat_Base_SearchResult_Subtitle 0x7f0b006f
@@ -392,6 +393,7 @@ int style Theme_Base_AppCompat 0x7f0b007e
 int style Theme_Base_AppCompat_Light 0x7f0b007f
 int style Theme_Base_AppCompat_Light_DarkActionBar 0x7f0b0080
 int style Theme_Base_Light 0x7f0b007d
+int style Theme_MyAppTheme_ActionBar_TitleTextStyle 0x7f0b0086
 int style Widget_AppCompat_ActionBar 0x7f0b0000
 int style Widget_AppCompat_ActionBar_Solid 0x7f0b0002
 int style Widget_AppCompat_ActionBar_TabBar 0x7f0b0011
