@@ -1,5 +1,6 @@
 package com.example.embed_listview;
 
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
         
+        // 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
+        
+        // Set actionbar title
+        SetCustomTitle("Project");
+        
         popListView();
         clickCallback();
 		
@@ -35,6 +43,12 @@ public class MainActivity extends ActionBarActivity {
                     .commit();
         } */ 
     }
+
+	private void SetCustomTitle(String title) {
+		// TODO Auto-generated method stub
+		TextView textViewTitle = (TextView)findViewById(R.id.mytext);
+		textViewTitle.setText(title);
+	}
 
 	private void popListView() {
     	// Create list of items
