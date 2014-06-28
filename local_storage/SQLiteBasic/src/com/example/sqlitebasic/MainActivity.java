@@ -15,6 +15,7 @@ import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 
+	// Instantiate a Database Adapter.
 	DBAdapter myDatabase;
 	
     @Override
@@ -22,8 +23,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        // Open the database
         openDB();
-
+        
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())

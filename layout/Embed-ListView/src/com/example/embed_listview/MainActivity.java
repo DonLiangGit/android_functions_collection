@@ -30,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         
         // Set actionbar title
-        SetCustomTitle("Project");
+        SetCustomTitle("Android UI");
         
         popListView();
         clickCallback();
