@@ -15,11 +15,12 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
   3. `create an XML file for string resources`
   4. `create an XML file for display each item (type: TextView)`
   5. `create ArrayAdapter to get the string[]`
-* `List View` (List item value stored in .java file):
+* `List View` (List item value stored in .java file, for activity not extend Listactivity):
   1. `create an XML fiel for displaying each list item`
   2. `create an string array to store value`
-  3. `create an Adapter to get the string and put them into listview`
-  4. `setAdapter`
+  3. `create an Adapter to connect list value and item layout`
+  4. `create listview and connect it to xml file`
+  5. `setAdapter(listview reference)`
   
 ### Icon:
   1. copy icons image seperately to `drawable` folder under `res`;
