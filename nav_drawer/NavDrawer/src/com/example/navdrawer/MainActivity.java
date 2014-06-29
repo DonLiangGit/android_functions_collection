@@ -1,12 +1,17 @@
 package com.example.navdrawer;
 
+import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.os.Build;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
     private DrawerLayout layDrawer;
     private ListView lstDrawer;
@@ -38,11 +43,13 @@ public class MainActivity extends Activity {
         initActionBar();
         initDrawer();
         initDrawerList();
+
     }
 
     private void initActionBar(){
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+    	final ActionBar actionbar = getActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeButtonEnabled(true);
         
     }
     

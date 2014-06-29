@@ -6,6 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    
+    <string name="Tab1">One</string>
+    <string name="Tab2">Two</string>
 
     <string-array name="drawer_menu">
         <item>Apple</item>
