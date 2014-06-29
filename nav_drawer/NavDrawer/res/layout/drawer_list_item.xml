@@ -8,4 +8,4 @@
     android:padding="10dp"
     android:text=""
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:textColor="#F54C6E" />
+    android:textColor="@color/Item_textcolor" />

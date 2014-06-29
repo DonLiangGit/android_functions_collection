@@ -10,17 +10,25 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <!-- Entry point - Splash -->
         <activity
-            android:name="com.example.navdrawer.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.example.navdrawer.Splash"
+            android:label="@string/title_activity_splash" 
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!-- Main Screen -->
+        <activity
+            android:name="com.example.navdrawer.MainActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 

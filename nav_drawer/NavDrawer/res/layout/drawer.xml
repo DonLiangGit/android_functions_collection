@@ -3,20 +3,21 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+       
     <!-- The main content view -->
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg" />
+        android:background="@color/NavDrawer_MainContent_BackGround" />
     
     <!-- The navigation drawer -->
     <ListView android:id="@+id/left_drawer"
-        android:layout_width="220dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:orientation="vertical"
-        android:background="#FFF"/>
+        android:background="@color/Drawer_background"/>
+
     
 </android.support.v4.widget.DrawerLayout>

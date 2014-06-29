@@ -25,11 +25,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
         
-        // 
+        // Set ActionBar layout
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         
-        // Set actionbar title
+        // Set ActionBar title
         SetCustomTitle("Android UI");
         
         popListView();

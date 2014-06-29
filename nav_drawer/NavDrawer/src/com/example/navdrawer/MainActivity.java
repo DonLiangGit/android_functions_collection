@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
     private void initActionBar(){
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
+        
     }
     
     private void initDrawer(){
@@ -123,6 +124,10 @@ public class MainActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
+    }
+    
+    public void onBakPressed() {
+    	  finish();
     }
 
 }
