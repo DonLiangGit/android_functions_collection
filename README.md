@@ -22,6 +22,14 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
   4. `create listview and connect it to xml file`
   5. `setAdapter(listview reference)`
   
+
+### Staggered GridView(Etsy):
+* Setting up(ADT):
+* Customization:
+  1. TextView aligned on the bottom of layout: `android:layout_gravity="bottom"`
+  2. TextView background transparent with color, for example: `android:background="#B3000000"`, for other opacity refer bottom Reference.
+
+
 =
 
 ### Icon:
@@ -49,3 +57,32 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
   1. Using logcat to debug:
   2. create `log` class then using its d method to pass the tag and message.
   3. Using `toast` to test: `Toast.makeText(context, message, duration).show();`, for the context arguement I would like to use this for current class.
+
+=
+
+### Reference:
+=
+
+| Hex Values Opacity   |
+| ------------- |
+|100% — FF
+|95% — F2
+|90% — E6
+|85% — D9
+|80% — CC
+|75% — BF
+|70% — B3
+|65% — A6
+|60% — 99
+|55% — 8C
+|50% — 80
+|45% — 73
+|40% — 66
+|35% — 59
+|30% — 4D
+|25% — 40
+|20% — 33
+|15% — 26
+|10% — 1A
+|5% — 0D
+|0% — 00 
