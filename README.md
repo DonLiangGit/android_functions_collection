@@ -25,7 +25,7 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
 
 ### Staggered GridView(Etsy):
 * Setting up(ADT):
-* Customization:
+* Customization/Modification:
   1. TextView aligned on the bottom of layout: `android:layout_gravity="bottom"`
   2. TextView background transparent with color, for example: `android:background="#B3000000"`, for other opacity refer bottom Reference.
 
