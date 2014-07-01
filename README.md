@@ -1,6 +1,6 @@
-Android Functions Specification
+Android Functions List
 =
-Directory
+Directory:
 =
 ### Screen Layout: 
 This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View` `Swipe Views`.
@@ -31,7 +31,12 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
   copy all three files into different folders in your project or
   2. create a handler and also use its `.postDelayed()` method to handle a new runnable.
   3. full screen: add `android:theme="@android:style/Theme.NoTitleBar.Fullscreen"` to `AndroidManifest.xml`.
+  4. (Optional for splash screen) add `android:screenOrientation="portrait"android:theme="@android:style/Theme.Black.NoTitleBar"`, this will let the splash screen with a status bar and perform perfect sa far.
   
+### Nav Drawer:
+
+### Swipe Views:
+
 ### Debug:
   1. Using logcat to debug:
   2. create `log` class then using its d method to pass the tag and message.
