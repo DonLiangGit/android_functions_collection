@@ -41,9 +41,11 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
 ### Splash screen:
   1. for basic splash screen:
   copy all three files into different folders in your project or
-  2. create a handler and also use its `.postDelayed()` method to handle a new runnable.
-  3. full screen: add `android:theme="@android:style/Theme.NoTitleBar.Fullscreen"` to `AndroidManifest.xml`.
-  4. (Optional for splash screen) add `android:screenOrientation="portrait"android:theme="@android:style/Theme.Black.NoTitleBar"`, this will let the splash screen with a status bar and perform perfect sa far.
+  2. create a handler and also use its `Handler().postDelayed(new Runnable(), SPLASH_DISPLAY_LENGTH)`
+  3. Override `run()` method.
+  4. full screen: add `android:theme="@android:style/Theme.NoTitleBar.Fullscreen"` to `AndroidManifest.xml`.
+  5. (Optional for splash screen) add `android:screenOrientation="portrait"android:theme="@android:style/Theme.Black.NoTitleBar"`, this will let the splash screen with a status bar and perform perfect sa far.
+
 
 = 
 
