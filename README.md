@@ -27,6 +27,7 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
 ### Icon:
   1. copy icons image seperately to `drawable` folder under `res`;
   2. change `android:icon="@drawable/your_icon_name` in `AndroidManifest.xml`;
+  
 =
 
 ### Splash screen:
