@@ -29,6 +29,14 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
   1. TextView aligned on the bottom of layout: `android:layout_gravity="bottom"`
   2. TextView background transparent with color, for example: `android:background="#B3000000"`, for other opacity refer bottom Reference.
   3. ImageView in XML set scale: `android:scaleType="fitXY"`, fitting xy for example.
+* Ways to set image displayed in app.
+  1. The XML way to set image in a layout:
+    1. Put image into res->drawable folder
+    2. Set `android:id="@+id/id-name" & android:src"@drawable/your-file-name" `in ImageView component
+  2. findViewById() way to set image:
+    1. Create an ImageView variable for xml imageview component (import android.widget.ImageView). (Set android:id="@+id/id-name")
+    2. `variable = (ImageView) findViewById(R.id.id-name)`, link it.
+    3. use imageview variable method `setImageResource(R.drawable.your-file-name)` to get the image file.
 
 =
 
