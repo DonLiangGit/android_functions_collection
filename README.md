@@ -28,7 +28,7 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
 * Customization/Modification:
   1. TextView aligned on the bottom of layout: `android:layout_gravity="bottom"`
   2. TextView background transparent with color, for example: `android:background="#B3000000"`, for other opacity refer bottom Reference.
-
+  3. ImageView in XML set scale: `android:scaleType="fitXY"`, fitting xy for example.
 
 =
 
