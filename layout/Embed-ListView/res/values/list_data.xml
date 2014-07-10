@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string-array name="Test">
+        <item>Plum</item>
+        <item>Google Map API v2</item>
+        <item>ViewPager</item>
+        <item>Android L</item>
+        <item>iOS Swift</item>
+        <item>Leetcode</item>
+        <item>Cracking the coding interview</item>
+        <item>AOSP</item>
+        <item>Python + Django</item>
+    </string-array> 
+</resources>

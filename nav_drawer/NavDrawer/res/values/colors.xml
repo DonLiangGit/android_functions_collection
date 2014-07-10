@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+	<color name="NavDrawer_MainContent_BackGround">#FFF</color>
+	<color name="Drawer_background">#FFF</color>
+	<color name="Item_textcolor">#28B78D</color>
+	
+</resources>
