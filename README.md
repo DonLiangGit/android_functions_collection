@@ -1,5 +1,7 @@
 # Specifications
 
+Related Design Pattern: Factory(Bitmap), Adapter(ListView), Builder(AlertDialog).
+
 Directory:
 =
 ### Screen Layout: 
