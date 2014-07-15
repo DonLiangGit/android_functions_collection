@@ -57,6 +57,14 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
 
 = 
 
+### Alert Dialog:
+  1. (Skip step) For the fluent UI and hold the main UI thread runs without clogging, we could set up a new worker thread to finish the job. `new a handler, new a runnable` and override the `run()` method.
+  2. `new AlertDialog` inside the block and set the its builder for the specific activity.
+  3. `setTitle()`, `setMessage()`, `setCancelable(boolean)`, `setNegativeButton("string",Override OnClickListenr() method)`.
+  4. call the `.create()` and `.show()` method.
+
+=
+
 ### Nav Drawer:
 =
 
