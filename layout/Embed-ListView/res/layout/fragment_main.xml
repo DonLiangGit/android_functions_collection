@@ -11,18 +11,18 @@
 
         <!-- android:src = "@drawable/file.name" -->
 
-        <ImageView
+<!--         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
             android:layout_height="190dp"
-            android:background="#28B78D" />
+            android:background="#28B78D" /> -->
 
         <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/imageView1" >
+            android:layout_alignParentTop="true" >
         </ListView>
 
     </RelativeLayout>

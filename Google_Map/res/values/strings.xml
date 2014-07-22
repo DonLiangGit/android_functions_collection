@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GMapV2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="API_key">AIzaSyBgO0swBrZonbi9fixG4tK9noo7pXsWWMQ</string>
+
+</resources>
