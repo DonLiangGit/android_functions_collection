@@ -21,6 +21,9 @@
         <item>House</item>
         <item>Iron</item>
         <item>Jingle</item>
+        <item>Jingle</item>
+        <item>Jingle</item>
+        <item>Jingle</item>
     </string-array>
 
     <string name="title_activity_splash">Splash</string>
