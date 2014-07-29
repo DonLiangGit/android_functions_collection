@@ -4,5 +4,7 @@
     <string name="app_name">SDCard_Basic</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="empty_dir">Empty Directory</string>
+    <string name="goto_root">..</string>
 
 </resources>
