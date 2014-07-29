@@ -1,5 +1,6 @@
 package com.example.sdcard_basic;
 
+import java.io.File;
 import java.util.List;
 
 import android.app.Activity;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
     
 	TextView textview;
+	private File SDCard_Path;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,14 @@ public class MainActivity extends Activity {
         	return;
         } else { 
         	textview.setText("SD Card is here.");
+        	SDCard_Path = Environment.getExternalStorageDirectory();
+        }
+        
+        File musicPath = new File(SDCard_Path.getParent() + "/"+ SDCard_Path.getName() + "/MusicDownload");
+        if (musicPath.exists()) {
+        	textview.setText("Folder exists.");
+        } else {
+        	textview.setText("Folder does not exists");
         }
     }
    
