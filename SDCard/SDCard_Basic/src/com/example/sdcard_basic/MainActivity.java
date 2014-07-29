@@ -21,20 +21,25 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         textview = (TextView)findViewById(R.id.textView1);
-        
+        checkAvail();
+
+    }
+
+	private void checkAvail() {
+        // Check SD Card mounted or not
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_REMOVED)) {
         	return;
         } else { 
         	textview.setText("SD Card is here.");
         	SDCard_Path = Environment.getExternalStorageDirectory();
         }
-        
-        File musicPath = new File(SDCard_Path.getParent() + "/"+ SDCard_Path.getName() + "/MusicDownload");
+        // Check folder in SD Card exists or not
+        File musicPath = new File(SDCard_Path.getParent() + "/"+ SDCard_Path.getName() + "/MusicDownloads");
         if (musicPath.exists()) {
         	textview.setText("Folder exists.");
         } else {
         	textview.setText("Folder does not exists");
         }
-    }
+	}
    
 }
