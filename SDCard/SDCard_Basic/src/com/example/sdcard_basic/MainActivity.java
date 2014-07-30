@@ -14,14 +14,16 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
     
-	TextView textview;
+//	TextView textview;
 	private File SDCard_Path;
 	private File musicPathFile;
 	
@@ -29,41 +31,54 @@ public class MainActivity extends ListActivity {
 	private MediaPlayer mp = new MediaPlayer();
 	private static final String Path = new String("/sdcard/Musixygen/");
 	
+	private ListView lv;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        textview = (TextView)findViewById(R.id.textView1);
+//        textview = (TextView)findViewById(R.id.textView1);
+        lv = (ListView)findViewById(R.id.testListView);
         checkAvail();
 //        getFiles();
+        lv.setOnItemClickListener( new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				Log.d("position", Path+songs.get(position));
+				try {
+					mp.reset();
+					mp.setDataSource(Path+songs.get(position));
+					mp.prepare();
+					mp.start();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+        	
+        });
 
     }
 
     
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// TODO Auto-generated method stub
-		Log.d("position", Path+songs.get(position));
-		try {
-			mp.reset();
-			mp.setDataSource(Path+songs.get(position));
-			mp.prepare();
-			mp.start();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	@Override
+//	protected void onListItemClick(ListView l, View v, int position, long id) {
+//
+//	}
 
 
 	private void checkAvail() {
@@ -71,7 +86,7 @@ public class MainActivity extends ListActivity {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_REMOVED)) {
         	return;
         } else { 
-        	textview.setText("SD Card is here.");
+//        	textview.setText("SD Card is here.");
         	SDCard_Path = Environment.getExternalStorageDirectory();
         }
         // Check folder in SD Card exists or not
@@ -81,20 +96,20 @@ public class MainActivity extends ListActivity {
         musicPathFile = new File("/sdcard/Musixygen/");
         if (musicPathFile.exists()) {
         	// exists
-        	textview.setText("Folder exists.");
+//        	textview.setText("Folder exists.");
         	final String path = musicPathFile.getPath();
         	Log.d("get", path);
         }
         if (musicPathFile.listFiles() == null) {
-        	textview.setText("Cannot find files!");
+//        	textview.setText("Cannot find files!");
         } else {
-        	textview.setText("Yo!");
+//        	textview.setText("Yo!");
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
         			songs.add(file.getName());
         		}
         		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, songs);
-        		setListAdapter(songList);
+        		lv.setAdapter(songList);
         	}       	
         }
 //        Log.d("Files", "Size: "+ files.length);

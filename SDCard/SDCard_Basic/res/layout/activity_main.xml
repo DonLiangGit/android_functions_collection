@@ -3,7 +3,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content">
       
-        <TextView android:id="@android:id/empty"
+<!--         <TextView android:id="@android:id/empty"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/empty_dir"/>
@@ -14,10 +14,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="Folder" />
+            android:text="Folder" /> -->
 
         <ListView
-            android:id="@id/android:list"
+            android:id="@+id/testListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
