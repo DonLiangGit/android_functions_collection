@@ -24,12 +24,12 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
     
 //	TextView textview;
-	private File SDCard_Path;
+	private File SDCard_Path = Environment.getExternalStorageDirectory();;
 	private File musicPathFile;
 	
 	private List<String> songs = new ArrayList<String>();
 	private MediaPlayer mp = new MediaPlayer();
-	private static final String Path = new String("/sdcard/Musixygen/");
+	private final String Path = new String(SDCard_Path.toString() + "/Musixygen/");
 	
 	private ListView lv;
 	
@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
         // Environment.getExternalStorageDirectory.getParent() returns '/storage/emulated'
         // Environment.getExternalStorageDirectory.getName() returns' 0
         // Full path return exact directory name in SDCard.
-        musicPathFile = new File("/sdcard/Musixygen/");
+        musicPathFile = new File(SDCard_Path.getParent() + "/" + SDCard_Path.getName() + "/Musixygen/");
         if (musicPathFile.exists()) {
         	// exists
 //        	textview.setText("Folder exists.");
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
         			songs.add(file.getName());
         		}
-        		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, songs);
+        		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, songs);
         		lv.setAdapter(songList);
         	}       	
         }
