@@ -48,34 +48,34 @@ public class MainActivity extends Activity {
         lv = (ListView)findViewById(R.id.testListView);
         checkAvail();
 //        getFiles();
-//        lv.setOnItemClickListener( new OnItemClickListener() {
-//			@Override
-//			public void onItemClick(AdapterView<?> parent, View v, int position,
-//					long id) {
-//				// TODO Auto-generated method stub
-//				// TODO Auto-generated method stub
-//				Log.d("position", Path+songs.get(position));
-//				try {
-//					mp.reset();
-//					mp.setDataSource(Path+songs.get(position));
-//					mp.prepare();
-//					mp.start();
-//				} catch (IllegalArgumentException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (SecurityException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (IllegalStateException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//        	
-//        });
+        lv.setOnItemClickListener( new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				Log.d("position", Path+songsTest.get(position).getFilenmae());
+				try {
+					mp.reset();
+					mp.setDataSource(Path+songsTest.get(position).getFilenmae());
+					mp.prepare();
+					mp.start();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+        	
+        });
 
     }
 
