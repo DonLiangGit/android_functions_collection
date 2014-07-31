@@ -38,9 +38,9 @@ public class MainActivity extends SlidingActivity {
 		getSlidingMenu().setBehindOffset(100);
 		
 		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
-		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.headerview, null);
-		SlidingMenu_List.addHeaderView(view);
+//		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//		View view = inflater.inflate(R.layout.headerview, null);
+//		SlidingMenu_List.addHeaderView(view);
 		
         String[] drawer_menu = this.getResources().getStringArray(R.array.menu_item);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, drawer_menu);

@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 
@@ -33,6 +36,9 @@ public class MainActivity extends Activity {
 	
 	private ListView lv;
 	
+	// testing customized listview
+	ArrayList<Song> songsTest;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,35 +48,34 @@ public class MainActivity extends Activity {
         lv = (ListView)findViewById(R.id.testListView);
         checkAvail();
 //        getFiles();
-        lv.setOnItemClickListener( new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position,
-					long id) {
-				// TODO Auto-generated method stub
-				// TODO Auto-generated method stub
-				Log.d("position", Path+songs.get(position));
-				try {
-					mp.reset();
-					mp.setDataSource(Path+songs.get(position));
-					mp.prepare();
-					mp.start();
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-        	
-        });
+//        lv.setOnItemClickListener( new OnItemClickListener() {
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View v, int position,
+//					long id) {
+//				// TODO Auto-generated method stub
+//				// TODO Auto-generated method stub
+//				Log.d("position", Path+songs.get(position));
+//				try {
+//					mp.reset();
+//					mp.setDataSource(Path+songs.get(position));
+//					mp.prepare();
+//					mp.start();
+//				} catch (IllegalArgumentException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (SecurityException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (IllegalStateException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//        	
+//        });
 
     }
 
@@ -82,6 +87,11 @@ public class MainActivity extends Activity {
 
 
 	private void checkAvail() {
+		
+		// testing
+		songsTest = new ArrayList<Song>();
+		ArrayList<Map<String,String>> songsMap = new ArrayList<Map<String,String>>();
+		
         // Check SD Card mounted or not
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_REMOVED)) {
         	return;
@@ -106,10 +116,40 @@ public class MainActivity extends Activity {
 //        	textview.setText("Yo!");
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
-        			songs.add(file.getName());
+
+        			// get MediaMetaData for each song
+        			MediaMetadataRetriever songMetaData = new MediaMetadataRetriever();
+        			songMetaData.setDataSource(Path + file.getName());
+        			String artistName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST);
+        			
+        			// time is retrieval
+        			int secs = Integer.parseInt(songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
+        			int mins = secs / 60;
+        			secs = secs % 60;
+        			String duration = String.format("%02d:%02d", mins, secs);
+        			
+        			if (artistName == null) {
+        				artistName = "Unknown";
+        			}
+        			
+        			// customized listview 7.31 testing
+        			Song s = new Song();
+        			s.setFilename(file.getName());
+        			s.setDuration(duration);
+        			songsTest.add(s);
+        			
+        			Map<String, String> mapSongInfo = convertSongToMap(s);
+        			songsMap.add(mapSongInfo);
+        			
+//        			songs.add(file.getName());
+        			
         		}
-        		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, songs);
-        		lv.setAdapter(songList);
+        		
+        		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.list_item, new String[]{"songName","duration"},new int[]{R.id.text1, R.id.text2});
+        		lv.setAdapter(adapter);
+        		
+//        		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, songs);
+//        		lv.setAdapter(songList);
         	}       	
         }
 //        Log.d("Files", "Size: "+ files.length);
@@ -118,6 +158,14 @@ public class MainActivity extends Activity {
 //        }
 	}
 	
+	private Map<String, String> convertSongToMap(Song s) {
+		// TODO Auto-generated method stub
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("songName", s.getFilenmae());
+		map.put("duration", s.getDuration());
+		return map;
+	}
+
 	class mp3FileFilter implements FilenameFilter {
 		public boolean accept(File dir, String name) {
 			return (name.endsWith(".mp3") || name.endsWith(".MP3"));
