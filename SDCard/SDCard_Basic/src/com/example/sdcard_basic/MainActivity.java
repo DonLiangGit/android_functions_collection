@@ -56,6 +56,7 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated method stub
 				Log.d("position", Path+songsTest.get(position).getFilenmae());
 				try {
+					v.setSelected(true);
 					mp.reset();
 					mp.setDataSource(Path+songsTest.get(position).getFilenmae());
 					mp.prepare();
