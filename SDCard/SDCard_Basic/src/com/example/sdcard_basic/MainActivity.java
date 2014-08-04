@@ -10,6 +10,8 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -41,7 +43,7 @@ public class MainActivity extends Activity {
 	ArrayList<Song> songsTest;
 	
 	// Testing albumart
-	ImageView album_art;
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -144,12 +146,22 @@ public class MainActivity extends Activity {
         				songTitle = "Unknown";
         			}
         			
+        			// Retrieve the album art
+        			byte[] art = null;
+        			if (songMetaData.getEmbeddedPicture() != null) {
+        				art = songMetaData.getEmbeddedPicture();
+        				ImageView album_art = (ImageView)findViewById(R.id.imageView1);
+        				Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
+        				album_art.setImageBitmap(songImage);
+        			}
+        			
         			// Set properties for a song
         			Song s = new Song();
         			s.setFilename(file.getName());
         			s.setDuration(duration);
         			s.setSinger(singerName);
         			s.setTitle(songTitle);
+        			s.setAlbumArt(art);
         			songsTest.add(s);
         			
         			Map<String, String> mapSongInfo = convertSongToMap(s);
