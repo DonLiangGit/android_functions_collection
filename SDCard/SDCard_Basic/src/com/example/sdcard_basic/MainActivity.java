@@ -43,7 +43,8 @@ public class MainActivity extends Activity {
 	ArrayList<Song> songsTest;
 	
 	// Testing albumart
-	
+	private MediaMetadataRetriever songMainMeta = new MediaMetadataRetriever();
+	private ImageView album_art = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,26 @@ public class MainActivity extends Activity {
         lv = (ListView)findViewById(R.id.testListView);
         checkAvail();
 //        getFiles();
+        album_art = (ImageView)findViewById(R.id.imageView1);
         lv.setOnItemClickListener( new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position,
 					long id) {
 				// TODO Auto-generated method stub
 				// TODO Auto-generated method stub
-				Log.d("position", Path+songsTest.get(position).getFilenmae());
+				// Log.d("position", Path+songsTest.get(position).getFilenmae());
 				try {
 					v.setSelected(true);
+					
+					songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
+        			// Retrieve the album art
+        			byte[] art = null;
+        			if (songMainMeta.getEmbeddedPicture() != null) {
+        				art = songMainMeta.getEmbeddedPicture();       				
+        				Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
+        				album_art.setImageBitmap(songImage);
+        			}
+        			
 					mp.reset();
 					mp.setDataSource(Path+songsTest.get(position).getFilenmae());
 					mp.prepare();
@@ -144,16 +156,7 @@ public class MainActivity extends Activity {
         			String songTitle = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
         			if (songTitle == null || songTitle.equals("")) {
         				songTitle = "Unknown";
-        			}
-        			
-        			// Retrieve the album art
-        			byte[] art = null;
-        			if (songMetaData.getEmbeddedPicture() != null) {
-        				art = songMetaData.getEmbeddedPicture();
-        				ImageView album_art = (ImageView)findViewById(R.id.imageView1);
-        				Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
-        				album_art.setImageBitmap(songImage);
-        			}
+        			}        		
         			
         			// Set properties for a song
         			Song s = new Song();
@@ -161,7 +164,6 @@ public class MainActivity extends Activity {
         			s.setDuration(duration);
         			s.setSinger(singerName);
         			s.setTitle(songTitle);
-        			s.setAlbumArt(art);
         			songsTest.add(s);
         			
         			Map<String, String> mapSongInfo = convertSongToMap(s);
