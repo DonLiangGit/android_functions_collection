@@ -4,6 +4,7 @@ public class Song {
 	private String filename;
 	private String duration;
 	private String singer;
+	private String title;
 	
 	public String getFilenmae() {
 		return filename;
@@ -24,5 +25,12 @@ public class Song {
 	}
 	public void setSinger(String singer) {
 		this.singer = singer;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

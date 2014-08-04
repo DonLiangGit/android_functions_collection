@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@drawable/list_item_bg">
 
-    <TextView android:id="@+id/text1"
+    <TextView android:id="@+id/filepath"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:padding="10dp"
@@ -12,7 +12,7 @@
 	    android:textColor="#DDE1E1"/>
 
     <TextView
-        android:id="@+id/text2"
+        android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/text1"
@@ -23,13 +23,23 @@
         android:textColor="#DDE1E1" />
 
     <TextView
-        android:id="@+id/text3"
+        android:id="@+id/artist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/text1"
+        android:layout_below="@+id/duration"
+        android:padding="10dp"
         android:text="Unknown Artist"
+        android:textColor="#DDE1E1" />
+
+    <TextView
+        android:id="@+id/songTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/artist"
+        android:layout_alignBottom="@+id/artist"
+        android:layout_centerHorizontal="true"
+        android:text="Unknown Title"
         android:textColor="#DDE1E1" />
 
 </RelativeLayout>

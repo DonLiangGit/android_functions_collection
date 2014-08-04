@@ -121,23 +121,29 @@ public class MainActivity extends Activity {
         			// get MediaMetaData for each song
         			MediaMetadataRetriever songMetaData = new MediaMetadataRetriever();
         			songMetaData.setDataSource(Path + file.getName());
-        			String singerName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
-
-        			// time is retrieval
-        			int secs = Integer.parseInt(songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
-        			int mins = secs / 60;
-        			secs = secs % 60;
-        			String duration = String.format("%02d:%02d", mins, secs);
         			
+        			// Retrieve the artist name
+        			String singerName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
         			if (singerName == null || singerName.equals("")) {
         				singerName = "Unknown";
         			}
         			
-        			// customized listview 7.31 testing
+        			// Retrieve the duration
+        			int secs = Integer.parseInt(songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
+        			int mins = secs / 60;
+        			secs = secs % 60;
+        			String duration = String.format("%02d:%02d", mins, secs);
+
+        			// Retrieve the song title
+        			String songTitle = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+ 
+        			
+        			// Set properties for a song
         			Song s = new Song();
         			s.setFilename(file.getName());
         			s.setDuration(duration);
         			s.setSinger(singerName);
+        			s.setTitle(songTitle);
         			songsTest.add(s);
         			
         			Map<String, String> mapSongInfo = convertSongToMap(s);
@@ -148,8 +154,8 @@ public class MainActivity extends Activity {
         		}
         		
         		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.list_item, 
-        				new String[] {"songName","duration","singerName"},
-        				new int[] {R.id.text1, R.id.text2, R.id.text3});
+        				new String[] {"songName","duration","singerName","songTitle"},
+        				new int[] {R.id.filepath, R.id.duration, R.id.artist, R.id.songTitle});
         		lv.setAdapter(adapter);
         		
         	}       	
@@ -166,6 +172,7 @@ public class MainActivity extends Activity {
 		map.put("songName", s.getFilenmae());
 		map.put("duration", s.getDuration());
 		map.put("singerName", s.getSinger());
+		map.put("songTitle", s.getTitle());
 		return map;
 	}
 
