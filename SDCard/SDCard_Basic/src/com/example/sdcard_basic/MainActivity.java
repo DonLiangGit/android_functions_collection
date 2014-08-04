@@ -73,6 +73,8 @@ public class MainActivity extends Activity {
         				art = songMainMeta.getEmbeddedPicture();       				
         				Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
         				album_art.setImageBitmap(songImage);
+        			} else {
+        				album_art.setImageResource(R.drawable.album);
         			}
         			
 					mp.reset();
