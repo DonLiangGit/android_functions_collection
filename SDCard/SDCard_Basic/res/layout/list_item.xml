@@ -9,7 +9,7 @@
 	    android:layout_height="wrap_content"
 	    android:padding="10dp"
 	    android:text="Path"
-	    android:textColor="#DDE1E1"/>
+	    android:textColor="#000054"/>
 
     <TextView
         android:id="@+id/duration"
@@ -20,7 +20,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="14dp"
         android:text="duration"
-        android:textColor="#DDE1E1" />
+        android:textColor="#000054" />
 
     <TextView
         android:id="@+id/artist"
@@ -30,7 +30,7 @@
         android:layout_below="@+id/duration"
         android:padding="10dp"
         android:text="Unknown Artist"
-        android:textColor="#DDE1E1" />
+        android:textColor="#fc2421" />
 
     <TextView
         android:id="@+id/songTitle"
@@ -40,6 +40,6 @@
         android:layout_alignBottom="@+id/artist"
         android:layout_centerHorizontal="true"
         android:text="Unknown Title"
-        android:textColor="#DDE1E1" />
+        android:textColor="#fc2421" />
 
 </RelativeLayout>

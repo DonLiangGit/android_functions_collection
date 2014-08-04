@@ -19,9 +19,18 @@
         <ListView
             android:id="@+id/testListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true" >
+            android:layout_height="250dp"
+            android:layout_alignParentRight="true" 
+            android:background="#fffed9">
+
         </ListView>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/testListView"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/album" />
 
 </RelativeLayout>

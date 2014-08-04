@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -38,6 +39,9 @@ public class MainActivity extends Activity {
 	
 	// testing customized listview
 	ArrayList<Song> songsTest;
+	
+	// Testing albumart
+	ImageView album_art;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -136,7 +140,9 @@ public class MainActivity extends Activity {
 
         			// Retrieve the song title
         			String songTitle = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
- 
+        			if (songTitle == null || songTitle.equals("")) {
+        				songTitle = "Unknown";
+        			}
         			
         			// Set properties for a song
         			Song s = new Song();
