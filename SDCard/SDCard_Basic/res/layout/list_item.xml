@@ -8,14 +8,28 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:padding="10dp"
+	    android:text="Path"
 	    android:textColor="#DDE1E1"/>
 
     <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/text1"
+        android:layout_alignBottom="@+id/text1"
         android:layout_alignParentRight="true"
-        android:text="duration" 
-        android:textColor="#DDE1E1"/>
-    
+        android:layout_marginRight="14dp"
+        android:text="duration"
+        android:textColor="#DDE1E1" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/text1"
+        android:text="Unknown Artist"
+        android:textColor="#DDE1E1" />
+
 </RelativeLayout>

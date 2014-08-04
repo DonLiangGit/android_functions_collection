@@ -121,22 +121,23 @@ public class MainActivity extends Activity {
         			// get MediaMetaData for each song
         			MediaMetadataRetriever songMetaData = new MediaMetadataRetriever();
         			songMetaData.setDataSource(Path + file.getName());
-        			String artistName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST);
-        			
+        			String singerName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+
         			// time is retrieval
         			int secs = Integer.parseInt(songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
         			int mins = secs / 60;
         			secs = secs % 60;
         			String duration = String.format("%02d:%02d", mins, secs);
         			
-        			if (artistName == null) {
-        				artistName = "Unknown";
+        			if (singerName == null || singerName.equals("")) {
+        				singerName = "Unknown";
         			}
         			
         			// customized listview 7.31 testing
         			Song s = new Song();
         			s.setFilename(file.getName());
         			s.setDuration(duration);
+        			s.setSinger(singerName);
         			songsTest.add(s);
         			
         			Map<String, String> mapSongInfo = convertSongToMap(s);
@@ -146,11 +147,11 @@ public class MainActivity extends Activity {
         			
         		}
         		
-        		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.list_item, new String[]{"songName","duration"},new int[]{R.id.text1, R.id.text2});
+        		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.list_item, 
+        				new String[] {"songName","duration","singerName"},
+        				new int[] {R.id.text1, R.id.text2, R.id.text3});
         		lv.setAdapter(adapter);
         		
-//        		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, songs);
-//        		lv.setAdapter(songList);
         	}       	
         }
 //        Log.d("Files", "Size: "+ files.length);
@@ -164,6 +165,7 @@ public class MainActivity extends Activity {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("songName", s.getFilenmae());
 		map.put("duration", s.getDuration());
+		map.put("singerName", s.getSinger());
 		return map;
 	}
 
