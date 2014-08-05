@@ -16,8 +16,11 @@ import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -46,7 +49,10 @@ public class MainActivity extends Activity {
 	
 	// Testing albumart
 	private MediaMetadataRetriever songMainMeta = new MediaMetadataRetriever();
-	private ImageView album_art = null;
+	private ImageView album_artFront = null;
+	private ImageView album_artBack = null;
+	
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +63,11 @@ public class MainActivity extends Activity {
         lv = (ListView)findViewById(R.id.testListView);
         checkAvail();
 //        getFiles();
-        album_art = (ImageView)findViewById(R.id.imageView1);
+        
+        album_artFront = (ImageView)findViewById(R.id.album_front);
+        album_artBack = (ImageView)findViewById(R.id.album_back);
+        
+        
         lv.setOnItemClickListener( new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position,
@@ -83,10 +93,22 @@ public class MainActivity extends Activity {
 	        			byte[] art = null;
 	        			if (songMainMeta.getEmbeddedPicture() != null) {
 	        				art = songMainMeta.getEmbeddedPicture();       				
-	        				Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
-	        				album_art.setImageBitmap(songImage);
+	        				final Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
+	        				album_artFront.setImageBitmap(songImage);
+	        				final Animation albumAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.albumart_translate);
+	        				album_artFront.startAnimation(albumAnimation);
+	        				
+	        				// Multi-threading to set Imageview
+	        				Handler handler = new Handler();
+	        				handler.postDelayed(new Runnable() {
+	        				    @Override
+	        				    public void run() {
+	        				        album_artBack.setImageBitmap(songImage);
+	        				    }
+	        				}, 1000);
+	        				
 	        			} else {
-	        				album_art.setImageResource(R.drawable.album);
+	        				album_artFront.setImageResource(R.drawable.album);
 	        			}
 	        			
 	        			positionTag = position;
