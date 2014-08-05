@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
 	private List<String> songs = new ArrayList<String>();
 	private MediaPlayer mp = new MediaPlayer();
 	private final String Path = new String(SDCard_Path.toString() + "/Musixygen/");
+	private int positionTag = 0;
 	
 	private ListView lv;
 	
@@ -66,21 +67,27 @@ public class MainActivity extends Activity {
 				try {
 					v.setSelected(true);
 					
-					songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
-        			// Retrieve the album art
-        			byte[] art = null;
-        			if (songMainMeta.getEmbeddedPicture() != null) {
-        				art = songMainMeta.getEmbeddedPicture();       				
-        				Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
-        				album_art.setImageBitmap(songImage);
-        			} else {
-        				album_art.setImageResource(R.drawable.album);
-        			}
-        			
-					mp.reset();
-					mp.setDataSource(Path+songsTest.get(position).getFilenmae());
-					mp.prepare();
-					mp.start();
+					if (positionTag == position) {
+						mp.stop();
+					} else {
+						songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
+	        			// Retrieve the album art
+	        			byte[] art = null;
+	        			if (songMainMeta.getEmbeddedPicture() != null) {
+	        				art = songMainMeta.getEmbeddedPicture();       				
+	        				Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
+	        				album_art.setImageBitmap(songImage);
+	        			} else {
+	        				album_art.setImageResource(R.drawable.album);
+	        			}
+	        			
+	        			positionTag = position;
+	        			
+						mp.reset();
+						mp.setDataSource(Path+songsTest.get(position).getFilenmae());
+						mp.prepare();
+						mp.start();
+					}
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -136,6 +143,7 @@ public class MainActivity extends Activity {
         } else {
 //        	textview.setText("Yo!");
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
+
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
 
         			// get MediaMetaData for each song
