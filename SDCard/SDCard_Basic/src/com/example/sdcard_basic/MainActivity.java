@@ -37,6 +37,7 @@ public class MainActivity extends Activity {
 	private MediaPlayer mp = new MediaPlayer();
 	private final String Path = new String(SDCard_Path.toString() + "/Musixygen/");
 	private int positionTag = 0;
+	private int resumeTag = 0;
 	
 	private ListView lv;
 	
@@ -67,9 +68,16 @@ public class MainActivity extends Activity {
 				try {
 					v.setSelected(true);
 					
-					if (positionTag == position) {
-						mp.stop();
-					} else {
+					if (positionTag == position && mp.isPlaying() == true) {
+						mp.pause();
+						resumeTag = mp.getCurrentPosition();
+						Log.d("pause","pause");
+					} else if (positionTag == position && mp.isPlaying() == false) {
+						mp.seekTo(resumeTag);
+						mp.start();
+						Log.d("resume","resume");
+					}
+					else {
 						songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
 	        			// Retrieve the album art
 	        			byte[] art = null;
