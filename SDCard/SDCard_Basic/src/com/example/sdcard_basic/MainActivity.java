@@ -61,6 +61,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        
 //        textview = (TextView)findViewById(R.id.textView1);
         lv = (ListView)findViewById(R.id.testListView);
         checkAvail();
@@ -86,9 +87,15 @@ public class MainActivity extends Activity {
 						resumeTag = mp.getCurrentPosition();
 						Log.d("pause","pause");
 					} else if (positionTag == position && mp.isPlaying() == false) {
-						mp.seekTo(resumeTag);
-						mp.start();
-						Log.d("resume","resume");
+						if (resumeTag == 0) {
+							mp.setDataSource(Path+songsTest.get(position).getFilenmae());
+							mp.prepare();
+							mp.start();
+						} else {
+							mp.seekTo(resumeTag);
+							mp.start();
+							Log.d("resume","resume");
+						}
 					}
 					else {
 						songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
@@ -186,7 +193,7 @@ public class MainActivity extends Activity {
         } else {
 //        	textview.setText("Yo!");
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
-
+        		int songID = 1;
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
 
         			// get MediaMetaData for each song
@@ -213,6 +220,14 @@ public class MainActivity extends Activity {
         			
         			// Set properties for a song
         			Song s = new Song();
+        			
+        			// New line for number of the specific song     			
+        			String songListID = Integer.toString(songID) + ".";
+        			Log.d("songID", songListID);
+        			s.setSongID(songListID);
+        			songID = songID + 1;
+        			
+
         			s.setFilename(file.getName());
         			s.setDuration(duration);
         			s.setSinger(singerName);
@@ -227,8 +242,8 @@ public class MainActivity extends Activity {
         		}
         		
         		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.list_item, 
-        				new String[] {"songName","duration","singerName","songTitle"},
-        				new int[] {R.id.filepath, R.id.duration, R.id.artist, R.id.songTitle});
+        				new String[] {"songID","duration","singerName","songTitle"},
+        				new int[] {R.id.number, R.id.duration, R.id.artist, R.id.songTitle});
         		lv.setAdapter(adapter);
         		
         	}       	
@@ -242,6 +257,7 @@ public class MainActivity extends Activity {
 	private Map<String, String> convertSongToMap(Song s) {
 		// TODO Auto-generated method stub
 		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("songID", s.getSongID());
 		map.put("songName", s.getFilenmae());
 		map.put("duration", s.getDuration());
 		map.put("singerName", s.getSinger());

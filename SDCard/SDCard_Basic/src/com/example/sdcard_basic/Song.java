@@ -6,6 +6,14 @@ public class Song {
 	private String singer;
 	private String title;
 	private byte[] album_art;
+	private String songID;
+	
+	public String getSongID() {
+		return songID;
+	}
+	public void setSongID(String songID) {
+		this.songID = songID;
+	}
 	
 	public String getFilenmae() {
 		return filename;

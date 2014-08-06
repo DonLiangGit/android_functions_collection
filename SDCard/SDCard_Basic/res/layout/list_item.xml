@@ -23,23 +23,34 @@
         android:textColor="#000054" />
 
     <TextView
-        android:id="@+id/artist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/duration"
-        android:padding="10dp"
-        android:text="Unknown Artist"
-        android:textColor="#fc2421" />
-
-    <TextView
         android:id="@+id/songTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/artist"
         android:layout_alignBottom="@+id/artist"
-        android:layout_centerHorizontal="true"
+        android:layout_marginRight="35dp"
+        android:layout_toLeftOf="@+id/duration"
         android:text="Unknown Title"
+        android:textColor="#fc2421" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/artist"
+        android:layout_alignBottom="@+id/artist"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="11dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/duration"
+        android:layout_toRightOf="@+id/number"
+        android:padding="10dp"
+        android:text="Unknown Artist"
         android:textColor="#fc2421" />
 
 </RelativeLayout>
