@@ -52,7 +52,9 @@ public class MainActivity extends Activity {
 	private ImageView album_artFront = null;
 	private ImageView album_artBack = null;
 	
-	
+	// Dynamic album info in main activity
+	private String song_title = null;
+//	private TextView song_titleTextView = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class MainActivity extends Activity {
         album_artFront = (ImageView)findViewById(R.id.album_front);
         album_artBack = (ImageView)findViewById(R.id.album_back);
         
+//        song_titleTextView = (TextView)findViewById(R.id.singer_name);
         
         lv.setOnItemClickListener( new OnItemClickListener() {
 			@Override
@@ -95,10 +98,11 @@ public class MainActivity extends Activity {
 	        				art = songMainMeta.getEmbeddedPicture();       				
 	        				final Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
 	        				album_artFront.setImageBitmap(songImage);
-	        				final Animation albumAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.albumart_translate);
+	        				
+	        				final Animation albumAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
 	        				album_artFront.startAnimation(albumAnimation);
 	        				
-	        				// Multi-threading to set Imageview
+	        				// Imageview Animation Overlay
 	        				Handler handler = new Handler();
 	        				handler.postDelayed(new Runnable() {
 	        				    @Override
@@ -106,6 +110,22 @@ public class MainActivity extends Activity {
 	        				        album_artBack.setImageBitmap(songImage);
 	        				    }
 	        				}, 1000);
+	        				
+//	        				// Song info in TextViews
+//	        				song_title = songMainMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+//
+//	        				final Animation textAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+//	        				
+//	        				// Song TextView Animation
+//	        				Handler texthandler = new Handler();
+//	        				texthandler.postDelayed(new Runnable() {
+//	        				    @Override
+//	        				    public void run() {
+//	    	        				song_titleTextView.setText(song_title);
+//	        				        song_titleTextView.startAnimation(textAnimation);
+//	        				    }
+//	        				}, 1000);
+
 	        				
 	        			} else {
 	        				album_artFront.setImageResource(R.drawable.album);
@@ -136,13 +156,6 @@ public class MainActivity extends Activity {
         });
 
     }
-
-    
-//	@Override
-//	protected void onListItemClick(ListView l, View v, int position, long id) {
-//
-//	}
-
 
 	private void checkAvail() {
 		

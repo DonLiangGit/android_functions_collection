@@ -39,7 +39,7 @@
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
             android:src="@drawable/album" />
-
+        
         <ListView
             android:id="@+id/testListView"
             android:layout_width="match_parent"
@@ -48,5 +48,17 @@
 	    	android:orientation="vertical" 
             android:background="#fffed9" >
         </ListView>
+
+        <TextView
+            android:id="@+id/singer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/album_back"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="44dp"
+            android:layout_marginLeft="34dp"
+            android:text="Unknown"
+            android:textColor="#8cfffa"
+            android:textSize="35sp" />
 
 </RelativeLayout>
