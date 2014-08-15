@@ -23,11 +23,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -162,6 +164,15 @@ public class MainActivity extends Activity {
         	
         });
 
+        lv.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                    int pos, long id) {
+                // TODO Auto-generated method stub
+                Toast.makeText(getBaseContext(), "long press", 1000).show();
+                return true;
+            }
+        }); 
     }
 
 	private void checkAvail() {
