@@ -169,7 +169,9 @@ public class MainActivity extends Activity {
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                     int pos, long id) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getBaseContext(), "long press", 1000).show();
+//                Toast.makeText(getBaseContext(), "long press", 1000).show();
+            	songDetailDialog dialogFragment = new songDetailDialog();
+            	dialogFragment.show(getFragmentManager(), "test");
                 return true;
             }
         }); 
