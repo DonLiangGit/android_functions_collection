@@ -18,8 +18,10 @@ public class songDetailDialog extends DialogFragment {
 		
 		// remove the dialog title
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.YELLOW));
-		dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		dialog.setContentView(R.layout.songdialoglayout);
+		dialog.setCanceledOnTouchOutside(true);
+		// set the dialog background transparent
+		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 		
 		return dialog;
 	}
