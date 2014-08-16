@@ -171,7 +171,7 @@ public class MainActivity extends Activity {
                 // TODO Auto-generated method stub
 //                Toast.makeText(getBaseContext(), "long press", 1000).show();
             	songDetailDialog dialogFragment = new songDetailDialog();
-            	dialogFragment.show(getFragmentManager(), "test");
+            	dialogFragment.show(getFragmentManager(), "whatever");
                 return true;
             }
         }); 
