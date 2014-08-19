@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class songDetailDialog extends DialogFragment implements OnItemClickListener{
 	
-	String[] listItems = {"Add to playlist", "Edit song info", "Share", "Feedback"};
+	String[] listItems = {"Add to playlist", "Song Details", "Share", "Feedback"};
 	
 	ListView dialogList;
 	
