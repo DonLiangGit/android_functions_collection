@@ -1,14 +1,23 @@
 package com.donliang.connectls;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import com.facebook.*;
 import com.facebook.model.*;
 
 import android.widget.TextView;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +32,27 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Get the KeyHash from Local Machine
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.donliang.connectls", 
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+                }
+        } catch (NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+        
         // start Facebook Login
+        // .opernActiveSession(arg1, arg2, arg3)
+        // arg1: a reference to this Activity
+        // arg2: a flag that indicate the Login UI should be used
+        // arg3: a callback when a status changes
         Session.openActiveSession(this, true, new Session.StatusCallback() {
 
           // callback when session changes state
