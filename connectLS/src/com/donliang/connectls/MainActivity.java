@@ -5,8 +5,11 @@ import java.security.NoSuchAlgorithmException;
 
 import com.facebook.*;
 import com.facebook.model.*;
+import com.facebook.widget.FacebookDialog;
 
+import android.widget.Button;
 import android.widget.TextView;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,37 +19,45 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.os.Build;
 
 public class MainActivity extends Activity {
-
+	
+	private UiLifecycleHelper uiHelper;
+	private Button shareButton;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Configure the UiLifecycleHelper in onCreate()
+        uiHelper = new UiLifecycleHelper(this, null);
+        uiHelper.onCreate(savedInstanceState);
+        
         setContentView(R.layout.activity_main);
+        
+        checkHashKey();
 
-        // Get the KeyHash from Local Machine
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.donliang.connectls", 
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-                }
-        } catch (NameNotFoundException e) {
-
-        } catch (NoSuchAlgorithmException e) {
-
-        }
+        final FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(this)
+        .setLink("https://www.youtube.com/watch?v=yf_f5KTztPI")
+        .build();
+        
+        shareButton = (Button)findViewById(R.id.shareButton);
+        shareButton.setOnClickListener(new OnClickListener() {
+        	public void onClick(View v) {
+        		// TODO Auto-generated method stub
+                uiHelper.trackPendingDialogCall(shareDialog.present());
+        	}
+        });
         
         // start Facebook Login
         // .opernActiveSession(arg1, arg2, arg3)
@@ -69,6 +80,10 @@ public class MainActivity extends Activity {
                   if (user != null) {
                     TextView welcome = (TextView) findViewById(R.id.welcome);
                     welcome.setText("Hello " + user.getName() + "!");
+                    Log.d("userId", user.getId());
+//                    Log.d("bday", user.getBirthday());
+                    Log.d("lastname", user.getLastName());
+                    
                   }
                 }
               }).executeAsync();
@@ -82,9 +97,34 @@ public class MainActivity extends Activity {
 //                    .commit();
 //        }
     }
+    
 
 
-    @Override
+
+	private void checkHashKey() {
+		// TODO Auto-generated method stub
+        // Get the KeyHash from Local Machine
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.donliang.connectls", 
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+                }
+        } catch (NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+	}
+	
+
+
+
+
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -124,6 +164,43 @@ public class MainActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
       super.onActivityResult(requestCode, resultCode, data);
       Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+      
+      uiHelper.onActivityResult(requestCode, resultCode, data, new FacebookDialog.Callback() {
+          @Override
+          public void onError(FacebookDialog.PendingCall pendingCall, Exception error, Bundle data) {
+              Log.e("Activity", String.format("Error: %s", error.toString()));
+          }
+
+          @Override
+          public void onComplete(FacebookDialog.PendingCall pendingCall, Bundle data) {
+              Log.i("Activity", "Success!");
+          }
+      });
     }
 
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        uiHelper.onResume();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        uiHelper.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        uiHelper.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        uiHelper.onDestroy();
+    }
+    
 }
