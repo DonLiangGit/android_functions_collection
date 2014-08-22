@@ -6,9 +6,12 @@ import java.security.NoSuchAlgorithmException;
 import com.facebook.*;
 import com.facebook.model.*;
 import com.facebook.widget.FacebookDialog;
+import com.facebook.widget.WebDialog;
+import com.facebook.widget.WebDialog.OnCompleteListener;
 
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -34,6 +37,7 @@ public class MainActivity extends Activity {
 	
 	private UiLifecycleHelper uiHelper;
 	private Button shareButton;
+	private Button logoutButton;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +50,16 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         checkHashKey();
-
-        final FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(this)
-        .setLink("https://www.youtube.com/watch?v=yf_f5KTztPI")
-        .build();
         
-        shareButton = (Button)findViewById(R.id.shareButton);
-        shareButton.setOnClickListener(new OnClickListener() {
+        logoutButton = (Button)findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {
-        		// TODO Auto-generated method stub
-                uiHelper.trackPendingDialogCall(shareDialog.present());
+        		Session session = Session.getActiveSession();
+        	    if (session != null) {
+        	    	session.closeAndClearTokenInformation();
+        	    	session.close();
+        	    	Session.setActiveSession(null);
+        	    }
         	}
         });
         
@@ -65,7 +69,6 @@ public class MainActivity extends Activity {
         // arg2: a flag that indicate the Login UI should be used
         // arg3: a callback when a status changes
         Session.openActiveSession(this, true, new Session.StatusCallback() {
-
           // callback when session changes state
           @Override
           public void call(Session session, SessionState state, Exception exception) {
@@ -90,6 +93,26 @@ public class MainActivity extends Activity {
             }
           }
         });
+        
+        shareButton = (Button)findViewById(R.id.shareButton);
+        shareButton.setOnClickListener(new OnClickListener() {
+        	public void onClick(View v) {
+        		// Using Share Dialog if Facebook app installed natively
+        		if (FacebookDialog.canPresentShareDialog(getApplicationContext(), 
+        				FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
+        			// Publish the post using the Share Dialog
+        			FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(getParent())
+        			.setLink("https://developers.facebook.com/android")
+        			.build();
+        			uiHelper.trackPendingDialogCall(shareDialog.present());
+        		} else {
+        			// Fallback. For example, publish the post using the Feed Dialog
+        			publishFeedDialog();
+        			Log.d("ShareDialog", "is not available");
+        		}
+        	}
+        });
+
 
 //        if (savedInstanceState == null) {
 //            getFragmentManager().beginTransaction()
@@ -98,9 +121,26 @@ public class MainActivity extends Activity {
 //        }
     }
     
+    private void publishFeedDialog() {
+        Bundle params = new Bundle();
+        params.putString("name", "Facebook SDK for Android");
+        params.putString("caption", "Build great social apps and get more installs.");
+        params.putString("description", "The Facebook SDK for Android makes it easier and faster to develop Facebook integrated Android apps.");
+        params.putString("link", "https://developers.facebook.com/android");
+        params.putString("picture", "https://raw.github.com/fbsamples/ios-3.x-howtos/master/Images/iossdk_logo.png");
 
-
-
+       WebDialog feedDialog = (new WebDialog.FeedDialogBuilder(MainActivity.this,
+    		   Session.getActiveSession(),
+    		   params))
+    		   .setOnCompleteListener(new OnCompleteListener() {
+    			   @Override
+    			   public void onComplete(Bundle values,FacebookException error) {
+    				   
+    			   }
+    		}).build();
+       feedDialog.show();
+    }
+    
 	private void checkHashKey() {
 		// TODO Auto-generated method stub
         // Get the KeyHash from Local Machine
@@ -119,10 +159,6 @@ public class MainActivity extends Activity {
 
         }
 	}
-	
-
-
-
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
