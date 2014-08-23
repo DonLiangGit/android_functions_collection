@@ -36,6 +36,7 @@ import android.os.Build;
 public class MainActivity extends Activity {
 	
 	private UiLifecycleHelper uiHelper;
+	private Button loginButton;
 	private Button shareButton;
 	private Button logoutButton;
 	
@@ -51,6 +52,23 @@ public class MainActivity extends Activity {
         
         checkHashKey();
         
+        loginButton = (Button)findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new OnClickListener() {
+        	public void onClick(View v) {
+        		Session session = Session.getActiveSession();
+        		// logout button should set in a fragment.
+        	    if (session.isOpened() == false) {
+        	    	Log.d("session", "is not");
+        	    	Session.openActiveSession(MainActivity.this, true, new Session.StatusCallback() {
+        	            @Override
+        	            public void call(Session session, SessionState state, Exception exception){
+        	            	
+        	            }	    		
+        	    	});
+        	    }
+        	}
+        });
+        
         logoutButton = (Button)findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {
@@ -59,6 +77,7 @@ public class MainActivity extends Activity {
         	    	session.closeAndClearTokenInformation();
         	    	session.close();
         	    	Session.setActiveSession(null);
+        	    	Toast.makeText(getBaseContext(), "Log out", Toast.LENGTH_SHORT).show();
         	    }
         	}
         });
@@ -105,10 +124,11 @@ public class MainActivity extends Activity {
         			.setLink("https://developers.facebook.com/android")
         			.build();
         			uiHelper.trackPendingDialogCall(shareDialog.present());
-        		} else {
+        		} else if (Session.getActiveSession().isOpened() == true){
         			// Fallback. For example, publish the post using the Feed Dialog
         			publishFeedDialog();
-        			Log.d("ShareDialog", "is not available");
+        		} else {
+        			Toast.makeText(getBaseContext(), "Please login Facebook", Toast.LENGTH_SHORT).show();
         		}
         	}
         });
@@ -129,16 +149,16 @@ public class MainActivity extends Activity {
         params.putString("link", "https://developers.facebook.com/android");
         params.putString("picture", "https://raw.github.com/fbsamples/ios-3.x-howtos/master/Images/iossdk_logo.png");
 
-       WebDialog feedDialog = (new WebDialog.FeedDialogBuilder(MainActivity.this,
-    		   Session.getActiveSession(),
-    		   params))
-    		   .setOnCompleteListener(new OnCompleteListener() {
+        WebDialog feedDialog = (new WebDialog.FeedDialogBuilder(MainActivity.this,
+        		Session.getActiveSession(),
+        		params))
+        		.setOnCompleteListener(new OnCompleteListener() {
     			   @Override
     			   public void onComplete(Bundle values,FacebookException error) {
     				   
     			   }
     		}).build();
-       feedDialog.show();
+        feedDialog.show();
     }
     
 	private void checkHashKey() {

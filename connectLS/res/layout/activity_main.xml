@@ -14,17 +14,17 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="121dp"
-        android:text="Hello World"
+        android:text="Facebook Log Share"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/shareButton"
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcome"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:text="Share Thoughts via Facebook" />
+        android:layout_marginTop="37dp"
+        android:text="Log in with Facebook" />
 
     <Button
         android:id="@+id/logoutButton"
@@ -32,7 +32,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/shareButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="22dp"
         android:text="Log out" />
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginButton"
+        android:layout_below="@+id/loginButton"
+        android:layout_marginTop="20dp"
+        android:text="Share with Facebook" />
 
 </RelativeLayout>
