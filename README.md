@@ -1,6 +1,9 @@
 # Specifications
 
-Related Design Pattern: Factory(Bitmap), Adapter(ListView), Builder(AlertDialog).
+Related Android Design Pattern: 
+* Factory(Bitmap)
+* Adapter(ListView)
+* Builder(AlertDialog).
 
 Directory:
 =
@@ -23,6 +26,8 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
   3. `create an Adapter to connect list value and item layout`
   4. `create listview and connect it to xml file`
   5. `setAdapter(listview reference)`
+
+* Be aware of layout_weight.
   
 
 ### Staggered GridView(Etsy):
