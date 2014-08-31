@@ -70,9 +70,6 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
 ### Nav Drawer:
 =
 
-### Swipe Views:
-=
-
 ### Debug:
   1. Using logcat to debug:
   2. create `log` class then using its d method to pass the tag and message.
