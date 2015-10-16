@@ -85,6 +85,8 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
 ### Reference:
 =
 
+http://stackoverflow.com/questions/15852122/hex-transparency-in-colors
+
 | Hex Values Opacity   |
 | ------------- |
 |100% — FF
