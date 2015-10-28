@@ -72,8 +72,11 @@ This folder includes `Relative Layout` `Table Layout` `Linear Layout` `List View
 
 =
 
-### Nav Drawer:
-=
+### Navgation bar listening:
+= onSaveInstanceState
+= onUserLeaveHint
+= ACTION_CLOSE_SYSTEM_DIALOGS
+= Framework PhoneWindowManager.java
 
 ### Debug:
   1. Using logcat to debug:
